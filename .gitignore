@@ -1,0 +1,12 @@
+.venv/
+venv/
+htmlcov/
+.coverage
+*.sqlite3
+.idea/
+staticfiles/
+virtual-env
+*.pyc
+*.pyo
+__pycache__/
+.env
