@@ -5,5 +5,5 @@ coverage
 djangorestframework-simplejwt
 django-cors-headers
 python-dotenv
-mysqlclient
+psycopg2-binary
 django-filter
