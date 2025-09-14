@@ -6,7 +6,7 @@ app_name = "amenazas"
 
 router = DefaultRouter()
 router.register(r"amenazas", AmenazaViewSet, basename="amenazas")
-router.register(r"amenazas/categorias", AmenazaCategoriaViewSet, basename="categorias")
+router.register(r"amenazas-categorias", AmenazaCategoriaViewSet, basename="amenazas_categorias")
 
 urlpatterns = [
     path("", include(router.urls)),

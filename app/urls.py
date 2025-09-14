@@ -14,8 +14,11 @@ urlpatterns = [
     # API User
     path('api/usuarios/', include('users.urls', namespace='usuarios')),
 
-    # API User
+    # API amenazas
     path('api/', include('amenazas.urls', namespace='amenazas')),
+
+    # API alertas
+    path('api/', include('alertas.urls', namespace='alertas')),
 
     # Allow API debug login
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
