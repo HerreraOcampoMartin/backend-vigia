@@ -18,10 +18,10 @@ class EstadoSerializer(serializers.ModelSerializer):
 
 
 class AlertaSerializer(serializers.ModelSerializer):
-    prioridad = serializers.PrimaryKeyRelatedField(queryset=AlertaPrioridad.objects.all())
+    prioridad = serializers.PrimaryKeyRelatedField(queryset=AlertaPrioridad.objects.filter(eliminado=False))
     mensaje = serializers.CharField(required=True)
     amenaza = serializers.PrimaryKeyRelatedField(queryset=Amenaza.objects.filter(eliminado=False))
-    estado = serializers.PrimaryKeyRelatedField(queryset=AlertaEstado.objects.all())
+    estado = serializers.PrimaryKeyRelatedField(queryset=AlertaEstado.objects.filter(eliminado=False))
 
     class Meta:
         model = Alerta

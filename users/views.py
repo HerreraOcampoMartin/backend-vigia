@@ -29,6 +29,19 @@ class CuentaViewSet(EliminacionLogicaViewSet, PermisosViewSet):
         'retrieve': [EsPropietarioOStaff],
     }
 
+    def create(self, request, *args, **kwargs):
+        # TODO: if account is deleted, allow to create again
+        usuario = request.data.get("usuario")
+        email = request.data.get("email")
+
+        if usuario and Cuenta.objects.filter(usuario=usuario).exists():
+            return Response({"error": "Ya existe una cuenta con este usuario"}, status=status.HTTP_409_CONFLICT)
+
+        if email and Cuenta.objects.filter(email=email).exists():
+            return Response({"error": "Ya existe una cuenta con este correo"}, status=status.HTTP_409_CONFLICT)
+
+        return super().create(request, *args, **kwargs)
+
 
 class CuentaPerfilViewSet(PermisosViewSet):
     queryset = CuentaPerfil.objects.all()

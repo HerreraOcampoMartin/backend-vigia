@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from common.permissions import EstaAutenticadoActivo, EsStaff, EsPropietarioOStaff
-from common.viewsets import PermisosViewSet
+from common.viewsets import PermisosViewSet, EliminacionLogicaViewSet
 from .serializers import *
 
 
@@ -36,7 +36,7 @@ class AlertaEstadoViewSet(PermisosViewSet):
     }
 
 
-class AlertaViewSet(PermisosViewSet):
+class AlertaViewSet(EliminacionLogicaViewSet, PermisosViewSet):
     queryset = Alerta.objects.all()
     serializer_class = AlertaSerializer
     filterset_fields = ['id', 'prioridad', 'mensaje', 'fecha_hora', 'amenaza', 'estado']
@@ -52,7 +52,7 @@ class AlertaViewSet(PermisosViewSet):
     }
 
 
-class AlertaComentarioViewSet(PermisosViewSet):
+class AlertaComentarioViewSet(EliminacionLogicaViewSet, PermisosViewSet):
     queryset = AlertaComentario.objects.filter(eliminado=False)
     serializer_class = ComentarioSerializer
     filterset_fields = ['id', 'creador', 'comentario', 'fecha_hora']
